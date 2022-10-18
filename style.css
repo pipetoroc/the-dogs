@@ -1,0 +1,40 @@
+:root{
+  --primary-color:#F9F5FA;
+  --dark-color: #57615E;
+  --different-color: pink;
+  --secondary-color:#DCFAF1;
+  --tertiary-color: #FAE5AA;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Averia Serif Libre', cursive;
+  background-color: var(--primary-color);
+}
+h1{
+  margin: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 4rem;
+  color: var(--dark-color);
+}
+img{
+  display: block;
+  width: 70%;
+  margin: 2.5rem auto;
+  border-radius: .5rem;
+}
+.reload{
+  display: block;
+  margin: 1rem auto;
+  padding: 1.0rem;
+  font-size: 2.0rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--different-color);
+  cursor: pointer;
+  color: var(--dark-color);
+}
