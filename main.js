@@ -1,9 +1,7 @@
-const API_URL_RANDOM =
-  "https://api.thedogapi.com/v1/images/search?limit=2&api_key=live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6";
-const API_URL_FAVORITES =
-  "https://api.thedogapi.com/v1/favourites?api_key=live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6";
+const API_URL_RANDOM = "https://api.thedogapi.com/v1/images/search?limit=2";
+const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 const API_URL_DELETE = (id) =>
-  `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6`;
+  `https://api.thedogapi.com/v1/favourites/${id}`;
 
 const spanError = document.getElementById("error");
 
@@ -38,14 +36,19 @@ async function loadRandomDogs() {
 }
 
 async function loadFavoritesDogs() {
-  const response = await fetch(API_URL_FAVORITES);
+  const response = await fetch(API_URL_FAVORITES, {
+    method: "GET",
+    headers: {
+       'X-API-KEY': 'live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6'
+    },
+  });
   const data = await response.json();
 
   console.log("Favorites");
   console.log(data);
 
   if (response.status !== 200) {
-    spanError.innerHTML = "Hubo un error: " + data.message + data.status;
+    spanError.innerHTML = "Hubo un error: " + data.status + data.message;
   } else {
     const section = document.getElementById("favoritesDogs");
     section.innerHTML = "";
@@ -76,6 +79,8 @@ async function saveFavouriteDog(id) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "X-API-KEY":
+        "live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6",
     },
     body: JSON.stringify({
       image_id: id,
@@ -98,6 +103,9 @@ async function saveFavouriteDog(id) {
 async function deleteFavouriteDog(id) {
   const response = await fetch(API_URL_DELETE(id), {
     method: "DELETE",
+    headers: {
+      'X-API-KEY': 'live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6',
+    }
   });
   const data = await response.json();
 
