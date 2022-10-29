@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400;700&display=swap" rel="stylesheet"> 
-  <title>The Dogs</title>
-</head>
-<body>
-<main>
-  <h1>Random Dogs</h1>
-  <span id="error"></span>
-  
-  <section id="randomDogs">
-    <h2 id="section-title"> Random Dogs</h2>
-    
-    <article>
-      <img alt="Random dog" id="img0"/>
-      <button class="main-button" id="button-save1">Save dog in favorites</button>
-    </article>
-    
-    <article>
-      <img alt="Random dog" id="img1"/>
-      <button class="main-button" id="button-save2">Save dog in favorites</button>
-    </article>
-    
-    <button class="main-button" id="button-reload"> Reload </button>
-  </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>The Dogs</title>
+  </head>
+  <body>
+    <main>
+      <h1>Random Dogs</h1>
 
-  <section id="favoritesDogs">
-    <h2 class="section-title">favorite dogs</h2>
-  </section>
-</main>  
+      <span id="error"></span>
 
-  <script src="./main.js"></script>
+      <section id="randomDogs">
+        <h2 id="section-title" class="section-title">Random Dogs</h2>
 
-</body>
+        <article>
+          <img alt="Random dog" id="img0" />
+          <button class="main-button" id="button-save1">
+            Save dog in favorites
+          </button>
+        </article>
+
+        <article>
+          <img alt="Random dog" id="img1" />
+          <button class="main-button" id="button-save2">
+            Save dog in favorites
+          </button>
+        </article>
+
+        <button class="main-button" id="button-reload">Reload</button>
+      </section>
+
+      <section id="uploadingDog">
+        <h2 class="section-title">Upload your dog picture</h2>
+
+        <form action="" id="uploadingForm">
+          <div class="custom-input-file">
+          <input type="file" id="file" name="file" class="input-file"/>
+          Subir foto de perro
+        </div>
+          <button type="button" id="button-upload" class="main-button">
+            Upload picture of your dog
+          </button>
+        </form>
+      </section>
+
+      <section id="favoritesDogs">
+        <h2 class="section-title">favorites dogs</h2>
+      </section>
+    </main>
+
+    <script src="./main.js"></script>
+  </body>
 </html>

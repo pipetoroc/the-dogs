@@ -1,9 +1,17 @@
 const API_URL_RANDOM = "https://api.thedogapi.com/v1/images/search?limit=2";
 const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites";
-const API_URL_DELETE = (id) =>
-  `https://api.thedogapi.com/v1/favourites/${id}`;
+const API_URL_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
+const API_URL_UPLOAD = "https://api.thedogapi.com/v1/images/upload";
+
 
 const spanError = document.getElementById("error");
+
+//buttons
+const buttonReload = document.getElementById("button-reload");
+buttonReload.onclick = loadRandomDogs;
+
+const buttonUploadPictureDog = document.getElementById("button-upload");
+buttonUploadPictureDog.onclick = uploadPictureDog;
 
 // fetch(URL)
 //   .then(response => response.json())
@@ -48,11 +56,13 @@ async function loadFavoritesDogs() {
   console.log(data);
 
   if (response.status !== 200) {
-    spanError.innerHTML = "Hubo un error: " + data.status + data.message;
+    spanError.innerText = "Houston tenemos problemas";
   } else {
     const section = document.getElementById("favoritesDogs");
     section.innerHTML = "";
+
     const h2 = document.createElement("h2");
+    h2.className = 'section-title';
     const h2Text = document.createTextNode("Favorites Dogs");
     h2.appendChild(h2Text);
     section.appendChild(h2);
@@ -61,6 +71,7 @@ async function loadFavoritesDogs() {
       const article = document.createElement("article");
       const img = document.createElement("img");
       const button = document.createElement("button");
+      button.className = 'main-button';
       const btnText = document.createTextNode("Delete dog from favorites");
 
       img.src = element.image.url;
@@ -104,8 +115,9 @@ async function deleteFavouriteDog(id) {
   const response = await fetch(API_URL_DELETE(id), {
     method: "DELETE",
     headers: {
-      'X-API-KEY': 'live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6',
-    }
+      "X-API-KEY":
+        "live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6",
+    },
   });
   const data = await response.json();
 
@@ -118,8 +130,21 @@ async function deleteFavouriteDog(id) {
   }
 }
 
+async function uploadPictureDog() {
+  const form = document.getElementById('uploadingForm');
+  const formData = new FormData(form);
+
+  console.log(formData.get('file'));
+
+  const response = await fetch (API_URL_UPLOAD, {
+    method: 'POST',
+    headers: {
+      'X-API-KEY': "live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6",
+    },
+    body: formData,
+  });
+  const data = await response.json();
+}
+
 loadRandomDogs();
 loadFavoritesDogs();
-
-const buttonReload = document.getElementById("button-reload");
-buttonReload.onclick = loadRandomDogs;

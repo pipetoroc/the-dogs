@@ -18,7 +18,7 @@ h1{
   margin: 2.5rem;
   text-align: center;
   font-weight: bold;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: var(--dark-color);
 }
 img{
@@ -30,11 +30,41 @@ img{
 .main-button{
   display: block;
   margin: 1rem auto;
-  padding: 1.0rem;
-  font-size: 2.0rem;
+  padding: 0.8rem;
+  font-size: 1.3rem;
   border: none;
   border-radius: 1rem;
   background-color: var(--different-color);
   cursor: pointer;
   color: var(--dark-color);
+}
+.section-title{
+  margin-left: 1.5rem;
+}
+.custom-input-file {
+  background-color: #941B80;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 auto 0;
+  min-height: 15px;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  width: 400px;
+}
+
+.custom-input-file .input-file {
+ border: 10000px solid transparent;
+ cursor: pointer;
+ font-size: 10000px;
+ margin: 0;
+ opacity: 0;
+ outline: 0 none;
+ padding: 0;
+ position: absolute;
+ right: -1000px;
+ top: -1000px;
 }
