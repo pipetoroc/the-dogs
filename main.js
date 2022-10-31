@@ -3,6 +3,11 @@ const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites";
 const API_URL_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
 const API_URL_UPLOAD = "https://api.thedogapi.com/v1/images/upload";
 
+const instance = axios.create({
+  baseURL: 'https://api.thedogapi.com/v1',
+  headers: {'X-API-KEY': 'live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6'},
+})
+
 
 const spanError = document.getElementById("error");
 
@@ -86,25 +91,29 @@ async function loadFavoritesDogs() {
 }
 
 async function saveFavouriteDog(id) {
-  const response = await fetch(API_URL_FAVORITES, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-KEY":
-        "live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6",
-    },
-    body: JSON.stringify({
-      image_id: id,
-    }),
+  const {data, status} = await instance.post('/favourites', {
+    image_id: id,
   });
-  const data = await response.json();
+
+
+  // const response = await fetch(API_URL_FAVORITES, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "X-API-KEY":
+  //       "live_HvigcgGopKeKUuoxlJNXHjPTQdzWdT6TfjSVjZVzb1qCgo941joEH8QwXZs1Din6",
+  //   },
+  //   body: JSON.stringify({
+  //     image_id: id,
+  //   }),
+  // });
+  // const data = await response.json();
 
   console.log("save");
-  console.log(response);
 
-  if (response.status !== 200) {
+  if (status !== 200) {
     spanError.innerHTML =
-      "There is an error: " + data.message + response.status;
+      "There is an error: " + data.message + status;
   } else {
     console.log("Dog save satisfactory");
     loadFavoritesDogs();
